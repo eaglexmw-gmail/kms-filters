@@ -27,6 +27,13 @@
 
 #include <glib/gprintf.h>
 
+#include "math.h"
+int
+cvRound (double value)
+{
+  return (ceil (value));
+}
+
 #define GREEN CV_RGB (0, 255, 0)
 
 #define PLUGIN_NAME "facedetector"
@@ -196,8 +203,8 @@ kms_face_detector_send_event (KmsFaceDetector * facedetector,
 
   for (i = 0;
       i <
-      (facedetector->priv->pFaceRectSeq ? facedetector->priv->
-          pFaceRectSeq->total : 0); i++) {
+      (facedetector->priv->pFaceRectSeq ? facedetector->priv->pFaceRectSeq->
+          total : 0); i++) {
     CvRect *r;
     GstStructure *face;
     gchar *id = NULL;

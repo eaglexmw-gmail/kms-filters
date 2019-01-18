@@ -35,6 +35,13 @@
 #include <opencv/highgui.h>
 #include <libsoup/soup.h>
 
+#include "math.h"
+int
+cvRound (double value)
+{
+  return (ceil (value));
+}
+
 #define TEMP_PATH "/tmp/XXXXXX"
 #define BLUE_COLOR (cvScalar (255, 0, 0, 0))
 #define SRC_OVERLAY ((double)1)
@@ -119,15 +126,15 @@ load_from_url (gchar * file_name, gchar * url)
   FILE *dst;
   gboolean ok = FALSE;
 
-  session = soup_session_new_with_options (
-      SOUP_SESSION_SSL_USE_SYSTEM_CA_FILE, TRUE,
-      SOUP_SESSION_SSL_STRICT, FALSE,
-      NULL);
+  session =
+      soup_session_new_with_options (SOUP_SESSION_SSL_USE_SYSTEM_CA_FILE, TRUE,
+      SOUP_SESSION_SSL_STRICT, FALSE, NULL);
 
   // Enable logging in 'libsoup' library
   if (g_strcmp0 (g_getenv ("SOUP_DEBUG"), "1") >= 0) {
     GST_INFO ("Enable debug logging in 'libsoup' library");
     SoupLogger *logger = soup_logger_new (SOUP_LOGGER_LOG_HEADERS, -1);
+
     soup_session_add_feature (session, SOUP_SESSION_FEATURE (logger));
   }
 

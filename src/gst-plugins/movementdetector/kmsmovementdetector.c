@@ -24,6 +24,13 @@
 #include "kmsmovementdetector.h"
 #include <opencv/highgui.h>
 
+#include "math.h"
+int
+cvRound (double value)
+{
+  return (ceil (value));
+}
+
 #define PLUGIN_NAME "movementdetector"
 
 GST_DEBUG_CATEGORY_STATIC (kms_movement_detector_debug_category);
